@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — PixelCraft Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Anybody:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .contact-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .contact-action-card {
+    background: var(--sand);
+    border-radius: 20px;
+    padding: 36px 28px;
+    text-decoration: none;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-action-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: translateY(101%);
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    z-index: 0;
+  }
+
+  .contact-action-card:hover::before { transform: translateY(0); }
+  .contact-action-card:hover { color: #fff; }
+  .contact-action-card:hover .cac-icon { background: rgba(255,255,255,0.1); }
+  .contact-action-card:hover .cac-hint { color: rgba(255,255,255,0.4); }
+  .contact-action-card:hover .cac-arrow { opacity: 1; transform: translateX(0); color: var(--pop); }
+  .contact-action-card > * { position: relative; z-index: 1; }
+
+  .cac-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 24px;
+    transition: background 0.5s;
+  }
+
+  .cac-icon.green { background: var(--green-soft); }
+  .cac-icon.blue { background: var(--blue-soft); }
+  .cac-icon.orange { background: var(--pop-soft); }
+  .cac-icon.gray { background: var(--sand); border: 1px solid rgba(27,25,22,0.06); }
+
+  .cac-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+    transition: color 0.5s;
+  }
+
+  .contact-action-card:hover .cac-label { color: rgba(255,255,255,0.4); }
+
+  .cac-value {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+
+  .cac-hint {
+    font-size: 14px;
+    color: var(--ink-muted);
+    font-weight: 400;
+    line-height: 1.5;
+    transition: color 0.5s;
+    flex: 1;
+  }
+
+  .cac-arrow {
+    font-size: 20px;
+    color: var(--pop);
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s;
+    align-self: flex-end;
+  }
+
+  /* Full-width card */
+  .contact-action-card.full {
+    grid-column: span 2;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    padding: 28px;
+  }
+
+  .contact-action-card.full .cac-icon { margin-bottom: 0; flex-shrink: 0; }
+  .contact-action-card.full .cac-text { flex: 1; }
+  .contact-action-card.full .cac-value { font-size: 18px; margin-bottom: 4px; }
+  .contact-action-card.full .cac-arrow { margin-top: 0; }
+
+  /* Info strip */
+  .contact-strip {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--sand);
+    padding: 14px 20px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-body);
+    flex: 1;
+    min-width: 200px;
+    justify-content: center;
+  }
+
+  .strip-icon { font-size: 18px; }
+
+  @media (max-width: 900px) {
+    .contact-cards { grid-template-columns: 1fr; }
+    .contact-action-card.full { 
+      grid-column: span 1; 
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .contact-action-card.full .cac-icon { margin-bottom: 20px; }
+    .contact-action-card.full .cac-arrow { align-self: flex-end; margin-top: 16px; }
+    .contact-strip { flex-direction: column; }
+    .strip-item { min-width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>PixelCraft Studio <b class="dot">●</b> Web Design Modern <b class="dot">●</b> Focsani, Romania <b class="dot">●</b> Disponibil pentru proiecte noi <b class="dot">●</b></span>
+    <span>PixelCraft Studio <b class="dot">●</b> Web Design Modern <b class="dot">●</b> Focsani, Romania <b class="dot">●</b> Disponibil pentru proiecte noi <b class="dot">●</b></span>
+    <span>PixelCraft Studio <b class="dot">●</b> Web Design Modern <b class="dot">●</b> Focsani, Romania <b class="dot">●</b> Disponibil pentru proiecte noi <b class="dot">●</b></span>
+    <span>PixelCraft Studio <b class="dot">●</b> Web Design Modern <b class="dot">●</b> Focsani, Romania <b class="dot">●</b> Disponibil pentru proiecte noi <b class="dot">●</b></span>
+  </div>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="logo">Pixel<i>Craft</i></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Acasa</a></li>
+    <li><a href="servicii.html">Servicii</a></li>
+    <li><a href="portofoliu.html">Portofoliu</a></li>
+    <li><a href="contact.html" class="cta-link active">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Meniu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <a href="index.html" class="mobile-link">Acasa</a>
+    <a href="servicii.html" class="mobile-link">Servicii</a>
+    <a href="portofoliu.html" class="mobile-link">Portofoliu</a>
+    <a href="contact.html" class="mobile-link active">Contact</a>
+    <div class="mobile-menu-footer">
+      <p>pixelcraft.studio9002@gmail.com</p>
+      <p>0743 343 917</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title anim">Hai sa <em class="accent-italic">vorbim</em></h1>
+    <p class="page-subtitle anim anim-d2">Alege metoda care ti se potriveste. Raspundem in maximum 24 de ore.</p>
+  </div>
+</div>
+
+<section class="contact-full">
+  <div class="container">
+
+    <div class="contact-cards">
+      <!-- Telefon -->
+      <a href="tel:0743343917" class="contact-action-card anim">
+        <div class="cac-icon green">📞</div>
+        <p class="cac-label">Telefon</p>
+        <h3 class="cac-value">0743 343 917</h3>
+        <p class="cac-hint">Suna-ne direct pentru o discutie rapida despre proiectul tau.</p>
+        <span class="cac-arrow">→</span>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:pixelcraft.studio9002@gmail.com" class="contact-action-card anim anim-delay-1">
+        <div class="cac-icon blue">✉️</div>
+        <p class="cac-label">Email</p>
+        <h3 class="cac-value">pixelcraft.studio9002<br>@gmail.com</h3>
+        <p class="cac-hint">Trimite-ne un email cu detalii despre ce ai nevoie.</p>
+        <span class="cac-arrow">→</span>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/40743343917?text=Salut!%20As%20vrea%20sa%20discut%20despre%20un%20proiect%20web." target="_blank" class="contact-action-card full anim anim-delay-2">
+        <div class="cac-icon orange">💬</div>
+        <div class="cac-text">
+          <p class="cac-label">WhatsApp</p>
+          <h3 class="cac-value">Scrie-ne pe WhatsApp</h3>
+          <p class="cac-hint">Cel mai rapid mod de a ne contacta. Apasa si incepe conversatia.</p>
+        </div>
+        <span class="cac-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Info strip -->
+    <div class="contact-strip anim">
+      <div class="strip-item">
+        <span class="strip-icon">📍</span>
+        Focsani, Vrancea
+      </div>
+      <div class="strip-item">
+        <span class="strip-icon">🕐</span>
+        Luni — Vineri, 14:00 — 19:00
+      </div>
+      <div class="strip-item">
+        <span class="strip-icon">⚡</span>
+        Raspuns in max. 24h
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-band" style="margin-top: 80px;">
+  <div class="container">
+    <div class="cta-content anim">
+      <h2 class="cta-title">Nu stii de unde sa <em class="accent-italic">incepi?</em></h2>
+      <p class="cta-desc">Suna-ne si te ajutam sa gasim solutia potrivita pentru afacerea ta.</p>
+      <a href="tel:0743343917" class="btn-primary btn-light">Suna acum <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Pixel<i>Craft</i></span>
+      <p class="footer-tagline">Site-uri web moderne pentru afaceri locale.</p>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-heading">Pagini</p>
+      <a href="index.html">Acasa</a>
+      <a href="servicii.html">Servicii</a>
+      <a href="portofoliu.html">Portofoliu</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <p class="footer-heading">Contact</p>
+      <a href="tel:0743343917">0743 343 917</a>
+      <a href="mailto:pixelcraft.studio9002@gmail.com">pixelcraft.studio9002@gmail.com</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© 2026 PixelCraft Studio. Toate drepturile rezervate.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
